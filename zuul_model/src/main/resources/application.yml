@@ -1,0 +1,19 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: zuul_model
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    tensquare_base:
+      path: /base/**
+      serviceId: base_model
+    tensquare_recruit:
+      path: /recruit/**
+      serviceId: recruit_model

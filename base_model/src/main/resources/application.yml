@@ -1,0 +1,25 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: base_model
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tensquare_base?characterEncoding=utf-8
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    tensquare_recruit:
+      path: /recruit/**
+      serviceId: recruit_model
