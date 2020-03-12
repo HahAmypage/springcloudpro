@@ -1,12 +1,23 @@
 package com.davina.recruit.pojo;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.util.Date;
 
+/**
+* description 职位实体类
+* @author chenyingxin
+* @date 2020/3/11 17:47
+* @Param
+* @return
+**/
 @Entity
 @Table(name = "tb_recruit")
+@ApiModel
 public class Recruit {
 
   @Id
@@ -18,14 +29,14 @@ public class Recruit {
   private String type;
   private String address;
   private String eid;
-  private Timestamp createtime;
+  private Date createtime;
   private String state;
   private String url;
   private String label;
   private String content1;
   private String content2;
 
-  public Recruit(String id, String jobname, String salary, String conditions, String education, String type, String address, String eid, Timestamp createtime, String state, String url, String label, String content1, String content2) {
+  public Recruit(String id, String jobname, String salary, String conditions, String education, String type, String address, String eid, Date createtime, String state, String url, String label, String content1, String content2) {
     this.id = id;
     this.jobname = jobname;
     this.salary = salary;
@@ -117,11 +128,11 @@ public class Recruit {
   }
 
 
-  public Timestamp getCreatetime() {
+  public Date getCreatetime() {
     return createtime;
   }
 
-  public void setCreatetime(Timestamp createtime) {
+  public void setCreatetime(Date createtime) {
     this.createtime = createtime;
   }
 

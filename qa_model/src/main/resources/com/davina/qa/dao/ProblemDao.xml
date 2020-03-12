@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--suppress ALL -->
+<mapper namespace="com.davina.qa.dao.ProblemDao">
+
+    <resultMap type="com.davina.qa.pojo.Problem" id="ResultMap">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="solve" property="solve"/>
+    </resultMap>
+
+    <parameterMap id="searchMap" type="com.davina.qa.pojo.Problem">
+        <parameter property="title" resultMap="ResultMap" />
+        <parameter property="content" resultMap="ResultMap" />
+        <parameter property="solve" resultMap="ResultMap" />
+    </parameterMap>
+
+    <update id="update" parameterType="com.davina.qa.pojo.Problem">
+        UPDATE tb_problem p
+        <set>
+            <if test="title != null ">
+               p.title = #{title},
+            </if>
+
+            <if test="content != null ">
+              p.content = #{content},
+            </if>
+
+            <if test="nickname != null ">
+              p.nickname = #{nickname},
+            </if>
+
+            <if test="visits != null ">
+               p.visits = #{visits},
+            </if>
+
+            <if test="thumbup != null ">
+               p.thumbup = #{thumbup},
+            </if>
+
+            <if test="reply != null ">
+               p.reply = #{reply},
+            </if>
+
+            <if test="solve != null ">
+               p.solve = #{solve}
+            </if>
+        </set>
+        WHERE p.id = #{id}
+    </update>
+
+    <select id="searchByLabelid" parameterMap="searchMap" resultType="com.davina.qa.pojo.Problem">
+        SELECT * FROM tb_problem p
+        <where>
+            p.id IN (SELECT problemid FROM tb_pl WHERE labelid = #{labelId})
+            <if test="title != null ">
+                AND p.title LIKE #{title}
+            </if>
+            <if test="content != null ">
+                AND p.content LIKE #{content}
+            </if>
+            <if test="solve != null ">
+                AND p.solve = #{solve}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

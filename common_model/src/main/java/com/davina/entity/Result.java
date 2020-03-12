@@ -9,10 +9,22 @@ package com.davina.entity;
  */
 public class Result {
 
-    private Boolean flag;// 返回结构状态
-    private Integer code;// 返回状态码
-    private String message;//返回消息
-    private Object data; // 返回数据内容
+    /**
+     * 返回结构状态
+     */
+    private Boolean flag;
+    /**
+     * 返回状态码
+     */
+    private Integer code;
+    /**
+     * 返回消息
+     */
+    private String message;
+    /**
+     * 返回数据内容
+     */
+    private Object data;
 
     public Result(Boolean flag, Integer code, String message, Object data) {
         this.flag = flag;

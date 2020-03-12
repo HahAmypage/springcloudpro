@@ -1,5 +1,7 @@
 package com.davina.recruit.config;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -7,8 +9,10 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.UiConfiguration;
 
 /**
  * @ClassName SwaggerConfig
@@ -36,7 +40,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.davaina.recruit.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.davina.recruit.controller"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -52,11 +58,13 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     **/        
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("") // 标题
-                .description("测试")
-                .termsOfServiceUrl("http://localhost:9002")
-                .contact("dddd")
-                .version("") // 版本
+                // 标题
+                .title("招聘服务")
+                .description("招聘服务接口")
+                .contact(new Contact("davian","","ddddd@qq.com"))
+                // 版本
+                .version("1.0")
                 .build();
     }
+
 }

@@ -14,6 +14,7 @@
         <module>recruit_model</module>
         <module>eureka_model</module>
         <module>zuul_model</module>
+        <module>qa_model</module>
     </modules>
 
 

@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   application:
-    name: base_model
+    name: base-model
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/tensquare_base?characterEncoding=utf-8
@@ -20,6 +20,12 @@ eureka:
     prefer-ip-address: true
 zuul:
   routes:
-    tensquare_recruit:
+    recruit-model:
       path: /recruit/**
-      serviceId: recruit_model
+      serviceId: recruit-model
+    qa-model:
+      path: /qa/**
+      serviceId: qa-model
+    article-model:
+      path: /article/**
+      serviceId: article-model

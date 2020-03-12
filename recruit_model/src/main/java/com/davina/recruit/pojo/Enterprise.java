@@ -1,11 +1,21 @@
 package com.davina.recruit.pojo;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+* description 企业实体类
+* @author chenyingxin
+* @date 2020/3/11 17:46
+* @Param
+* @return
+**/
 @Entity
 @Table(name = "tb_enterprise")
+@ApiModel
 public class Enterprise {
 
   @Id

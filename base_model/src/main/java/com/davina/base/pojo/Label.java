@@ -1,5 +1,7 @@
 package com.davina.base.pojo;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,15 +15,31 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_label")
+@ApiModel
 public class Label {
 
     @Id
     private String id;
-    private String labelname;//标签名称
-    private String state;// 状态
-    private Integer count;//数量
-    private Integer fans;//粉丝数
-    private String recommend;//是否推荐
+    /**
+     * 标签名称
+     */
+    private String labelname;
+    /**
+     * 状态
+     */
+    private String state;
+    /**
+     * 数量
+     */
+    private Integer count;
+    /**
+     * 粉丝数
+     */
+    private Integer fans;
+    /**
+     * 是否推荐
+     */
+    private String recommend;
 
     public Label(String id, String labelname, String state, Integer count, Integer fans, String recommend) {
         this.id = id;

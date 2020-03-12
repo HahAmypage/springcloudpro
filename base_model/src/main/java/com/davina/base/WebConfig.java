@@ -16,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Configuration
-@EnableWebMvc // 注意不要漏了这个注解，否则进入不了这个配置类
+@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Override

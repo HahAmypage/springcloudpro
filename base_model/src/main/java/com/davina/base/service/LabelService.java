@@ -33,6 +33,11 @@ public class LabelService {
     @Autowired
     private IdWorker idWorker;
 
+    private static final String LABELNAME = "labelname";
+
+    private static final String STATE = "state";
+
+    private static final String RECOMMEND = "recommend";
 
     /**
     * @author chenyingxin
@@ -127,16 +132,16 @@ public class LabelService {
             @Override
             public Predicate toPredicate(Root<Label> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicateList = new ArrayList<>();
-                if (searchMap.get("labelname") != null && !"".equals(searchMap.get("labelname"))){
-                    predicateList.add(criteriaBuilder.like(root.get("labelname").as(String.class),"%"+searchMap.get("labelname")+"%"));
+                if (searchMap.get(LABELNAME) != null && !"".equals(searchMap.get(LABELNAME))){
+                    predicateList.add(criteriaBuilder.like(root.get(LABELNAME).as(String.class),"%"+searchMap.get(LABELNAME)+"%"));
                 }
 
-                if (searchMap.get("state") != null && !"".equals(searchMap.get("state"))){
-                    predicateList.add(criteriaBuilder.equal(root.get("state").as(String.class),"%"+searchMap.get("state")+"%"));
+                if (searchMap.get(STATE) != null && !"".equals(searchMap.get(STATE))){
+                    predicateList.add(criteriaBuilder.equal(root.get(STATE).as(String.class),searchMap.get(STATE)));
                 }
 
-                if (searchMap.get("recommend") != null && !"".equals(searchMap.get("recommend"))){
-                    predicateList.add(criteriaBuilder.equal(root.get("recommend").as(String.class),"%"+searchMap.get("recommend")+"%"));
+                if (searchMap.get(RECOMMEND) != null && !"".equals(searchMap.get(RECOMMEND))){
+                    predicateList.add(criteriaBuilder.equal(root.get(RECOMMEND).as(String.class),searchMap.get(RECOMMEND)));
                 }
 
                 Predicate[] predicates = new Predicate[predicateList.size()];
