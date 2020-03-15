@@ -541,4 +541,15 @@
       type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+
+    <update id="examine" parameterType="java.lang.String">
+        UPDATE tb_article SET state = '1'
+        WHERE id = #{id}
+    </update>
+
+    <update id="thumbup" parameterType="map">
+        UPDATE tb_article SET thumbup = coalesce(thumbup,0)+ #{thumbup}
+        WHERE id = #{id}
+    </update>
 </mapper>

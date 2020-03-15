@@ -1,13 +1,14 @@
 package com.davina.article.controller;
 
 import com.davina.article.pojo.Article;
+import com.davina.article.pojo.UserThumbup;
 import com.davina.article.service.ArticleService;
+import com.davina.article.service.ThumbupService;
 import com.davina.entity.PageResult;
 import com.davina.entity.Result;
 import com.davina.entity.StatusCode;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -33,6 +34,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ThumbupService thumbupService;
 
     private final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
@@ -90,6 +94,44 @@ public class ArticleController {
         }catch (Exception e){
             logger.error(e.getMessage());
             return new Result(false,StatusCode.ERROR,"删除失败");
+        }
+    }
+
+    @ApiOperation(value = "文章审核")
+    @PutMapping(value = "/examine/{id}")
+    public Result examine(@PathVariable("id") String id){
+        try {
+            articleService.examine(id);
+            return new Result(true,StatusCode.OK,"审核成功");
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return new Result(true,StatusCode.OK,"审核失败");
+        }
+    }
+
+    @ApiOperation(value = "文章点赞/取消点赞")
+    @PutMapping(value = "/thumbup/{userid}/{articleid}")
+    public Result thumbup(@PathVariable("userid")String userid,@PathVariable("articleid")String articleid){
+        List<UserThumbup> userThumbups = thumbupService.selectByUserIdAndArticleId(userid, articleid);
+        if (userThumbups.size() > 0){
+            try {
+                //取消点赞,更新文章点赞数，并且删掉点赞记录
+                articleService.thumbup(articleid,-1);
+                thumbupService.delete(userid,articleid);
+                return new Result(true,StatusCode.OK,"取消点赞");
+            }catch (Exception e){
+                logger.error(e.getMessage());
+                return new Result(false,StatusCode.ERROR,"取消点赞失败");
+            }
+        }
+        try {
+            // 点赞，更新文章点赞数，并且添加点赞记录
+            articleService.thumbup(articleid,1);
+            thumbupService.insert(userid,articleid);
+            return new Result(true,StatusCode.OK,"点赞成功");
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return new Result(false,StatusCode.ERROR,"点赞失败");
         }
     }
 }

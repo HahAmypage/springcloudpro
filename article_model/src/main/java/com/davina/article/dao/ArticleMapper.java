@@ -3,6 +3,7 @@ package com.davina.article.dao;
 import com.davina.article.pojo.Article;
 import com.davina.article.pojo.ArticleExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -123,4 +124,22 @@ public interface ArticleMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Article record);
+
+    /**
+    *  文章审核
+    * @author chenyingxin
+    * @date 2020/3/15 11:14
+    * @param id:
+    * @return: void
+    **/
+    void examine(String id);
+
+    /**
+    *  点赞/取消点赞
+    * @author chenyingxin
+    * @date 2020/3/15 11:22
+    * @param map: 封装的条件
+    * @return: void
+    **/
+    void thumbup(Map<String,Object> map);
 }

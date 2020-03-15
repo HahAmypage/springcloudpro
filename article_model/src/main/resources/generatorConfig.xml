@@ -38,9 +38,10 @@
         </javaClientGenerator>
 
         <!--这里填写数据库表和实体名字对应关系，注意domainObjectName是自己加的，还有几个不生成simple的属性要去掉-->
-        <table tableName="tb_article" domainObjectName="Article" />
-        <table tableName="tb_channel" domainObjectName="Channel" />
-        <table tableName="tb_column" domainObjectName="Column" />
+        <!--<table tableName="tb_article" domainObjectName="Article" />-->
+        <!--<table tableName="tb_channel" domainObjectName="Channel" />-->
+        <!--<table tableName="tb_column" domainObjectName="Column" />-->
+        <!--<table tableName="tb_user_thumup" domainObjectName="UserThumbup" />-->
 
     </context>
 </generatorConfiguration>

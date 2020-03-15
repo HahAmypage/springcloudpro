@@ -3,14 +3,11 @@ package com.davina.article.service;
 import com.davina.article.dao.ArticleMapper;
 import com.davina.article.pojo.Article;
 import com.davina.article.pojo.ArticleExample;
-import com.davina.entity.PageResult;
 import com.davina.util.IdWorker;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +26,7 @@ public class ArticleService {
 
     @Autowired
     private IdWorker idWorker;
+
 
     /**
     *  查询所有
@@ -66,7 +64,7 @@ public class ArticleService {
     *  根据id查询
     * @author chenyingxin
     * @date 2020/3/13 20:05
-    * @param id:
+    * @param id: 文章id
     * @return: com.davina.article.pojo.Article
     **/
     public Article findById(String id){
@@ -77,7 +75,7 @@ public class ArticleService {
     *  添加文章
     * @author chenyingxin
     * @date 2020/3/13 20:18
-    * @param article:
+    * @param article: 文章对象
     * @return: void
     **/
     public void insert(Article article){
@@ -89,7 +87,7 @@ public class ArticleService {
     *  更新文章
     * @author chenyingxin
     * @date 2020/3/13 20:32
-    * @param article:
+    * @param article: 文章对象
     * @return: void
     **/
     public void update(Article article){
@@ -105,10 +103,35 @@ public class ArticleService {
     *  根据id删除文章
     * @author chenyingxin
     * @date 2020/3/13 20:33
-    * @param id:
+    * @param id: 文章id
     * @return: void
     **/
     public void delete(String id){
         articleMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+    *  审核文章
+    * @author chenyingxin
+    * @date 2020/3/15 11:14
+    * @param id: 文章id
+    * @return: void
+    **/
+    public void examine(String id) {
+        articleMapper.examine(id);
+    }
+
+    /**
+    *  点赞/取消点赞（更新文章点赞数）
+    * @author chenyingxin
+    * @date 2020/3/15 11:19
+    * @return: void
+    **/
+    public void thumbup(String id,Integer thumbup){
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("thumbup",thumbup);
+        articleMapper.thumbup(map);
+    }
+
 }
