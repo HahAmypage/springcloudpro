@@ -8,6 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/tensquare_article?characterEncoding=utf-8
     username: root
     password: root
+  redis:
+    host: 127.0.0.1
 
 mybatis:
   type-aliases-package: com.davina.article.pojo
@@ -32,9 +34,12 @@ zuul:
     recruit-model:
       path: /recruit/**
       serviceId: recruit-model
-    article-model:
+    qa-model:
       path: /qa/**
       serviceId: qa-model
+    gathering-model:
+      path: /gathering/**
+      serviceId: gathering-model
 
 
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 * @Param 
 * @return 
 **/        
-@Entity
+
 @Table(name = "tb_ul")
 public class Ul implements Serializable {
 

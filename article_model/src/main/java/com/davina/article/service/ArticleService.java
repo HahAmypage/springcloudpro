@@ -5,11 +5,13 @@ import com.davina.article.pojo.Article;
 import com.davina.article.pojo.ArticleExample;
 import com.davina.util.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName ArticleService
@@ -27,6 +29,8 @@ public class ArticleService {
     @Autowired
     private IdWorker idWorker;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
     *  查询所有
@@ -68,7 +72,14 @@ public class ArticleService {
     * @return: com.davina.article.pojo.Article
     **/
     public Article findById(String id){
-        return articleMapper.selectByPrimaryKey(id);
+        // 先找缓存
+        Article article = (Article) redisTemplate.opsForValue().get("article_"+id);
+        if (article == null){
+            // 缓存没有查数据库，并存入缓存
+            article = articleMapper.selectByPrimaryKey(id);
+            redisTemplate.opsForValue().set("article_"+id,article,1, TimeUnit.DAYS);
+        }
+        return article;
     }
 
     /**
@@ -96,6 +107,7 @@ public class ArticleService {
 
         criteria.andIdEqualTo(article.getId());
 
+        redisTemplate.delete("article_"+article.getId());
         articleMapper.updateByExampleSelective(article,articleExample);
     }
 
@@ -107,6 +119,7 @@ public class ArticleService {
     * @return: void
     **/
     public void delete(String id){
+        redisTemplate.delete("article_"+id);
         articleMapper.deleteByPrimaryKey(id);
     }
 

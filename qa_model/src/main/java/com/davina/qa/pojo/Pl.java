@@ -12,7 +12,7 @@ import java.io.Serializable;
 * @Param
 * @return
 **/
-@Entity
+
 @Table(name = "tb_pl")
 public class Pl implements Serializable {
 

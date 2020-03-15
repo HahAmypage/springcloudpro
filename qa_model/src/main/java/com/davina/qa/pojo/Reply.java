@@ -16,7 +16,6 @@ import java.util.Date;
 * @return
 **/
 @ApiModel
-@Entity
 @Table(name = "tb_reply")
 public class Reply implements Serializable {
 

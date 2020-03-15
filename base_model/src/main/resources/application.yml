@@ -29,3 +29,6 @@ zuul:
     article-model:
       path: /article/**
       serviceId: article-model
+    gathering-model:
+      path: /gathering/**
+      serviceId: gathering-model

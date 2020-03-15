@@ -40,16 +40,11 @@ public class ArticleController {
 
     private final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
-    /**
-    *  查询所有
-    * @author chenyingxin
-    * @date 2020/3/13 20:08
-    * @return: com.davina.entity.Result
-    **/
+
     @ApiOperation(value = "查询多条件查询")
     @PostMapping(value = "/search/{pageNo}/{pageSize}")
     public Result findAll(@RequestBody Map<String,String> searchMap,@PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize){
-        PageHelper.startPage(pageNo - 1,pageSize);
+        PageHelper.startPage(pageNo,pageSize);
         Page<Article> articlePage = (Page<Article>) articleService.findAll(searchMap);
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(articlePage.getTotal(),articlePage.getResult()));
     }
