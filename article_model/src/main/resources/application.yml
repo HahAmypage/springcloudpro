@@ -1,0 +1,40 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: article-model
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tensquare_article?characterEncoding=utf-8
+    username: root
+    password: root
+
+mybatis:
+  type-aliases-package: com.davina.article.pojo
+  mapper-locations: classpath:/com/davina/article/dao/*.xml
+
+logging:
+  level:
+    com.davina.article: debug
+
+eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:6868/eureka
+    instance:
+      prefer-ip-address: true
+
+zuul:
+  routes:
+    base-model:
+      path: /base/**
+      serviceId: base-model
+    recruit-model:
+      path: /recruit/**
+      serviceId: recruit-model
+    article-model:
+      path: /qa/**
+      serviceId: qa-model
+
+
+
