@@ -1,17 +1,14 @@
 server:
-  port: 9001
+  port: 9006
 spring:
   application:
-    name: base-model
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tensquare_base?characterEncoding=utf-8
-    username: root
-    password: root
-  jpa:
-    database: mysql
-    show-sql: true
-    generate-ddl: true
+    name: spit-model
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: spitdb
+  redis:
+    host: 127.0.0.1
 eureka:
   client:
     service-url:
@@ -20,6 +17,9 @@ eureka:
     prefer-ip-address: true
 zuul:
   routes:
+    base-model:
+      path: /base/**
+      serviceId: base-model
     recruit-model:
       path: /recruit/**
       serviceId: recruit-model
@@ -32,6 +32,3 @@ zuul:
     gathering-model:
       path: /gathering/**
       serviceId: gathering-model
-    spit-model:
-      path: /spit/**
-      serviceId: spit-model

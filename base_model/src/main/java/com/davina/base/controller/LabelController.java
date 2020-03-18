@@ -139,7 +139,7 @@ public class LabelController {
     **/
     @ApiOperation(value = "多条件分页查询")
     @RequestMapping(value = "/search/{pageNo}/{pageSize}",method = RequestMethod.POST)
-    public Result findByPages(@RequestBody Map searchMap, @PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize){
+    public Result findByPages(@RequestBody Map searchMap, @PathVariable("pageNo") Integer pageNo,@PathVariable("pageSize") Integer pageSize){
         Page<Label> labelPage = labelService.findByPage(searchMap, pageNo, pageSize);
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<Label>(labelPage.getTotalElements(),labelPage.getContent()));
     }

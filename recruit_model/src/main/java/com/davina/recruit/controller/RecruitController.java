@@ -90,7 +90,7 @@ public class RecruitController {
 
     @ApiOperation("多条件分页查询")
     @RequestMapping(value = "/{pageNo}/{pageSize}",method = RequestMethod.POST)
-    public Result findByPage(@RequestBody Map searchMap,@PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize){
+    public Result findByPage(@RequestBody Map searchMap,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSize") Integer pageSize){
         Page<Recruit> recruitPage = recruitService.findByPage(searchMap, pageNo, pageSize);
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(recruitPage.getTotalElements(),recruitPage.getContent()));
     }

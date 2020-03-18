@@ -38,6 +38,10 @@ zuul:
     article-model:
       path: /article/**
       serviceId: article-model
+    spit-model:
+      path: /spit/**
+      serviceId: spit-model
+
 
 
 

@@ -36,7 +36,7 @@ public class GatheringController {
 
     @ApiOperation(value = "查询多条件查询")
     @PostMapping(value = "/search/{pageNo}/{pageSize}")
-    public Result findAll(@RequestBody GatheringWithBLOBs gatheringWithBLOBs, @PathVariable("pageNo") int pageNo, @PathVariable("pageSize") int pageSize){
+    public Result findAll(@RequestBody GatheringWithBLOBs gatheringWithBLOBs, @PathVariable("pageNo") Integer pageNo, @PathVariable("pageSize") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         Page<GatheringWithBLOBs> gatheringPage = (Page<GatheringWithBLOBs>) gatheringService.findAll(gatheringWithBLOBs);
         return new Result(true, StatusCode.OK,"查询成功",new PageResult<>(gatheringPage.getTotal(),gatheringPage.getResult()));

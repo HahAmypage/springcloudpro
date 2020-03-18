@@ -43,7 +43,7 @@ public class ArticleController {
 
     @ApiOperation(value = "查询多条件查询")
     @PostMapping(value = "/search/{pageNo}/{pageSize}")
-    public Result findAll(@RequestBody Map<String,String> searchMap,@PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize){
+    public Result findAll(@RequestBody Map<String,String> searchMap,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSize") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         Page<Article> articlePage = (Page<Article>) articleService.findAll(searchMap);
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(articlePage.getTotal(),articlePage.getResult()));

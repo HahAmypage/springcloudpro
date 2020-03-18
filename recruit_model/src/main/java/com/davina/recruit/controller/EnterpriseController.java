@@ -91,7 +91,7 @@ public class EnterpriseController {
 
     @ApiOperation("多条件分页查询")
     @RequestMapping(value = "/search/{pageNo}/{pageSize}",method = RequestMethod.POST)
-    public Result findByPage(@RequestBody Map searchMap,@PathVariable("pageNo") int pageNo,@PathVariable("pageSize") int pageSize){
+    public Result findByPage(@RequestBody Map searchMap,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSize") Integer pageSize){
         Page<Enterprise> enterprisePage = enterpriseService.findByPage(searchMap, pageNo, pageSize);
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(enterprisePage.getTotalElements(),enterprisePage.getContent()));
     }

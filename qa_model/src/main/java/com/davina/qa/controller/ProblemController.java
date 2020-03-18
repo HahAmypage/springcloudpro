@@ -89,7 +89,7 @@ public class ProblemController {
 
     @ApiOperation("多条件分页查询")
     @PostMapping(value = "/{pageNo}/{pageSzie}")
-    public Result searchByLabelid(@RequestBody Map searchMap,@PathVariable("pageNo") int pageNo,@PathVariable("pageSzie") int pageSize){
+    public Result searchByLabelid(@RequestBody Map searchMap,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSzie") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         PageInfo<Problem> problemPageInfo = new PageInfo<>(problemService.searchByLabelid(searchMap, pageNo, pageSize));
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(problemPageInfo.getTotal(),problemPageInfo.getList()));
@@ -97,7 +97,7 @@ public class ProblemController {
 
     @ApiOperation("查询最新回复的问题列表")
     @GetMapping(value = "/newlist/{labelId}/{pageNo}/{pageSize}")
-    public Result findByNewReply(String labelId,int pageNo,int pageSize){
+    public Result findByNewReply(String labelId,Integer pageNo,Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         List<Problem> problemList = problemService.findByNewReply(labelId, pageNo, pageSize);
         PageInfo<Problem> problemPageInfo = new PageInfo<>(problemList);
@@ -106,7 +106,7 @@ public class ProblemController {
 
     @ApiOperation("查询热门回复的问题列表")
     @GetMapping(value = "/hotlist/{labelId}/{pageNo}/{pageSize}")
-    public Result findByHotReply(String labelId,int pageNo,int pageSize){
+    public Result findByHotReply(String labelId,Integer pageNo,Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         List<Problem> problemList = problemService.findByHotReply(labelId, pageNo, pageSize);
         PageInfo<Problem> pageInfo = new PageInfo<>(problemList);
@@ -115,7 +115,7 @@ public class ProblemController {
 
     @ApiOperation("查询等待回复的问题列表")
     @RequestMapping(value = "/waitlist/{labelId}/{pageNo}/{pageSize}",method = RequestMethod.GET)
-    public Result findByWaitReply(String labelId,int pageNo,int pageSize){
+    public Result findByWaitReply(String labelId,Integer pageNo,Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         List<Problem> problemList = problemService.findByWaitReply(labelId, pageNo, pageSize);
         PageInfo<Problem> problemPageInfo = new PageInfo<>(problemList);

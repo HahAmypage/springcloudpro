@@ -39,4 +39,8 @@ zuul:
     gathering-model:
       path: /gathering/**
       serviceId: gathering-model
+    spit-model:
+      path: /spit/**
+      serviceId: spit-model
+
 
