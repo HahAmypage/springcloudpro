@@ -32,4 +32,6 @@ zuul:
     spit-model:
       path: /spit/**
       serviceId: spit-model
-
+    search_model:
+      path: /search/**
+      serviceId: search_model

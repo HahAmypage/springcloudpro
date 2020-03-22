@@ -18,6 +18,7 @@
         <module>article_model</module>
         <module>gathering_model</module>
         <module>spit_model</module>
+        <module>search_model</module>
     </modules>
 
 
