@@ -19,6 +19,10 @@
         <module>gathering_model</module>
         <module>spit_model</module>
         <module>search_model</module>
+        <module>user_model</module>
+        <module>sms_model</module>
+        <module>friend_model</module>
+        <module>zuul_web_model</module>
     </modules>
 
 

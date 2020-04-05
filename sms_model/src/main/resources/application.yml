@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sms-model
+  rabbitmq:
+    host: 127.0.0.1
+aliyun:
+  sms:
+    accessKeyId: XX
+    accessKeySecret: XX
+    template_code: XX
+    signName: XX

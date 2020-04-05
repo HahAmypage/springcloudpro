@@ -105,7 +105,7 @@ public class ProblemService {
     * @Param [searchMap]
     * @return java.util.List<com.davina.qa.pojo.Problem>
     **/
-    public List<Problem> searchByLabelid(Map searchMap, int pageNo, int pageSize){
+    public List<Problem> searchByLabelid(Map searchMap){
         if (searchMap.get(TITLE) != null && !"".equals(searchMap.get(TITLE))){
             searchMap.put(TITLE,"%"+searchMap.get(TITLE)+"%");
         }

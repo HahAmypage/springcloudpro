@@ -8,6 +8,7 @@ import com.davina.qa.pojo.Problem;
 import com.davina.qa.service.ProblemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,9 @@ public class ProblemController {
     @Autowired
     private LabelClient labelClient;
 
+    @Autowired
+    private HttpServletRequest request;
+
     private final Logger logger = LoggerFactory.getLogger(ProblemController.class);
 
     @ApiOperation(value = "根据标签查询问题")
@@ -55,6 +60,11 @@ public class ProblemController {
     @PostMapping(value = "/{labelId}")
     public Result add(@RequestBody Problem problem,@PathVariable("labelId") String labelId){
         try {
+            Claims claims = (Claims) request.getAttribute("user_claims");
+            if (claims == null){
+                return new Result(false,StatusCode.ACCESSERROR,"无权限访问");
+            }
+            problem.setUserid(claims.getId());
             problemService.add(problem,labelId);
             return new Result(true,StatusCode.OK,"添加成功");
         }catch (Exception e){
@@ -91,7 +101,7 @@ public class ProblemController {
     @PostMapping(value = "/{pageNo}/{pageSzie}")
     public Result searchByLabelid(@RequestBody Map searchMap,@PathVariable("pageNo") Integer pageNo,@PathVariable("pageSzie") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<Problem> problemPageInfo = new PageInfo<>(problemService.searchByLabelid(searchMap, pageNo, pageSize));
+        PageInfo<Problem> problemPageInfo = new PageInfo<>(problemService.searchByLabelid(searchMap));
         return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(problemPageInfo.getTotal(),problemPageInfo.getList()));
     }
 

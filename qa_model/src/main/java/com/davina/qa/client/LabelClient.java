@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Date 2020/3/10 20:38
  * @Version 1.0
  */
-@FeignClient("base-model")
+@FeignClient(value = "base-model",fallback = LabelClientImpl.class)
 public interface LabelClient {
 
     /**

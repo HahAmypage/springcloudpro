@@ -1,0 +1,43 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: zuul-web-model
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  host:
+    socket-timeout-millis: 12000
+    connect-timeout-millis: 12000
+  routes:
+    base-model:
+      path: /base/**
+      serviceId: base-model
+    recruit-model:
+      path: /recruit/**
+      serviceId: recruit-model
+    qa-model:
+      path: /qa/**
+      serviceId: qa-model
+    article-model:
+      path: /article/**
+      serviceId: article-model
+    gathering-model:
+      path: /gathering/**
+      serviceId: gathering-model
+    spit-model:
+      path: /spit/**
+      serviceId: spit-model
+    search_model:
+      path: /search/**
+      serviceId: search_model
+    user-model:
+      path: /user/**
+      serviceId: user-model
+    friend-model:
+      path: /friend/**
+      serviceId: friend-model

@@ -38,3 +38,9 @@ zuul:
     search_model:
       path: /search/**
       serviceId: search_model
+    user-model:
+      path: /user/**
+      serviceId: user-model
+    friend-model:
+      path: /friend/**
+      serviceId: friend-model

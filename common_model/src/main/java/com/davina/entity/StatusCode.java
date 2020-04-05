@@ -17,4 +17,14 @@ public class StatusCode {
      * 失败
      */
     public static final int ERROR = 20001;
+
+    /**
+     * 权限不足
+     */
+    public static final int ACCESSERROR = 20002;
+
+    /**
+     * 登录失败
+     */
+    public static final int LOGINERROR = 20003;
 }
