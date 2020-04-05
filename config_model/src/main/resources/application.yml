@@ -1,0 +1,10 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: config-model
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/HAHAtester/sms.git
