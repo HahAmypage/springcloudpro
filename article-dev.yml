@@ -9,7 +9,8 @@ spring:
     username: root
     password: root
   redis:
-    host: 127.0.0.1
+    host: article-dev.yml
+    port: 6379
 
 mybatis:
   type-aliases-package: com.davina.article.pojo
