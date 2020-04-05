@@ -1,0 +1,43 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: spit-model
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: spitdb
+  redis:
+    host: 127.0.0.1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    base-model:
+      path: /base/**
+      serviceId: base-model
+    recruit-model:
+      path: /recruit/**
+      serviceId: recruit-model
+    qa-model:
+      path: /qa/**
+      serviceId: qa-model
+    article-model:
+      path: /article/**
+      serviceId: article-model
+    gathering-model:
+      path: /gathering/**
+      serviceId: gathering-model
+    search_model:
+      path: /search/**
+      serviceId: search_model
+    user-model:
+      path: /user/**
+      serviceId: user-model
+    friend-model:
+      path: /friend/**
+      serviceId: friend-model
