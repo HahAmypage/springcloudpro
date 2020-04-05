@@ -11,6 +11,8 @@ spring:
   redis:
     host: 192.168.31.126
     port: 6379
+  rabbitmq:
+    host: 127.0.0.1
 
 mybatis:
   type-aliases-package: com.davina.article.pojo
