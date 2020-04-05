@@ -12,6 +12,8 @@ spring:
     database: mysql
     show-sql: true
     generate-ddl: true
+  rabbitmq:
+    host: 127.0.0.1
 eureka:
     client:
       service-url:
