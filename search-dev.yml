@@ -1,0 +1,43 @@
+server:
+  port: 9007
+spring:
+  application:
+    name: search_model
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+zuul:
+  host:
+    socket-timeout-millis: 12000
+    connect-timeout-millis: 12000
+  routes:
+    base-model:
+      path: /base/**
+      serviceId: base-model
+    recruit-model:
+      path: /recruit/**
+      serviceId: recruit-model
+    qa-model:
+      path: /qa/**
+      serviceId: qa-model
+    article-model:
+      path: /article/**
+      serviceId: article-model
+    gathering-model:
+      path: /gathering/**
+      serviceId: gathering-model
+    spit-model:
+      path: /spit/**
+      serviceId: spit-model
+    user-model:
+      path: /user/**
+      serviceId: user-model
+    friend-model:
+      path: /friend/**
+      serviceId: friend-model
