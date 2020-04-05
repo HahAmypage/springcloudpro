@@ -12,14 +12,15 @@ spring:
     database: mysql
     show-sql: true
     generate-ddl: true
+  rabbitmq:
+    host: 127.0.0.1
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:6868/eureka
   instance:
     prefer-ip-address: true
-rabbitmq:
-    host: 127.0.0.1
+
 zuul:
   routes:
     recruit-model:
