@@ -49,4 +49,4 @@ zuul:
       serviceId: friend-model
 
 sms:
-    ip: 192.168.31.126
+    ip: 127.0.0.1
