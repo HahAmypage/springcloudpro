@@ -18,6 +18,8 @@ eureka:
       defaultZone: http://localhost:6868/eureka
   instance:
     prefer-ip-address: true
+rabbitmq:
+    host: 127.0.0.1
 zuul:
   routes:
     recruit-model:
