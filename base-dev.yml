@@ -46,3 +46,6 @@ zuul:
     friend-model:
       path: /friend/**
       serviceId: friend-model
+
+sms:
+    ip: 127.0.0.1
